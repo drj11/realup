@@ -20,7 +20,18 @@ function
 onRequest(request, response)
 {
     console.log('new request')
-    response.end()
+    request.setEncoding('utf8')
+    request.on('data', onData)
+    request.on('end', function() {
+        response.end()
+    })
+}
+
+// Called when we get 'data' from a request.
+function
+onData(chunk)
+{
+    console.log('got data [[' + chunk + ']]')
 }
 
 main()

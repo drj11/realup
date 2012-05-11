@@ -18,13 +18,13 @@ main()
           '\n$$ echo stderr end')
     })
     child = echo
-    // Gives the child HTTP server a change to start.
-    setTimeout(testRequest, 1000)
+    // Gives the child HTTP server a chance to start.
+    setTimeout(testRequest, 150)
 }
 
 function
 testRequest() {
-    var req = http.request({ method: 'GET',
+    var req = http.request({ method: 'POST',
       host: 'localhost', port: '8000', path: '/' })
     req.on('error', function(e) {
         console.log('reqError: ' + e.message)
@@ -38,13 +38,16 @@ testRequest() {
             exit()
         })
     })
+    req.write('Hello World!\r\n')
     req.end()
 }
 
 function
 exit() {
-    child.kill()
-    process.exit()
+    setTimeout(function() {
+        child.kill()
+        process.exit()
+    }, 1000)
 }
 
 main()
