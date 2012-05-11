@@ -17,6 +17,7 @@ main()
         process.stdout.write('FROM ECHO STDERR: ' + data +
           '\n$$ echo stderr end')
     })
+    child = echo
     // Gives the child HTTP server a change to start.
     setTimeout(testRequest, 1000)
 }
@@ -31,13 +32,19 @@ testRequest() {
     req.on('response', function(response) {
         // http://nodejs.org/api/http.html#http_event_end_1
         response.on('end', function() {
-            process.exit()
+            exit()
         })
         response.on('close', function() {
-            process.exit()
+            exit()
         })
     })
     req.end()
+}
+
+function
+exit() {
+    child.kill()
+    process.exit()
 }
 
 main()

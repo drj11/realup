@@ -19,7 +19,7 @@ main()
 function
 onRequest(request, response)
 {
-    process.stdout.write('new request')
+    console.log('new request')
     response.end()
 }
 
