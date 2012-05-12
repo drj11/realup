@@ -1,7 +1,7 @@
 realup
 ======
 David Jones
-===========
+-----------
 
 A test of near-realtime updates in node.js
 
@@ -10,8 +10,8 @@ PATH.
 
 Start the server:
 
-./code/echo.js
+    ./code/echo.js
 
 Start a client (in another window):
 
-./code/client.js
+    ./code/client.js
